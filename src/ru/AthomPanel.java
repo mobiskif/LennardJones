@@ -29,7 +29,6 @@ public class AthomPanel extends JPanel {
         add(new Athom(400, 250));
         add(new Athom(190, 235));
 */
-
         components = getComponents();
         model.calculate(components);
     }
