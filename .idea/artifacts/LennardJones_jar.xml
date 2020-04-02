@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="LennardJones:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LennardJones_jar</output-path>
+    <root id="archive" name="LennardJones.jar">
+      <element id="module-output" name="LennardJones" />
+    </root>
+  </artifact>
+</component>

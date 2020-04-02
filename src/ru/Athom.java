@@ -14,7 +14,7 @@ public class Athom extends Container {
         super();
         double imgScale = 0.17; //размер атома водорода: 50А=5*10e-9, размер полотна 500А, т.е. 1 пиксель = 1 А
         try {
-            image = ImageIO.read(new File("src/ru/athom.png"));
+            image = ImageIO.read(new File("/res/athom.png"));
             W = (int) (image.getWidth(this) * imgScale);
             H = (int) (image.getHeight(this) * imgScale);
             image = image.getScaledInstance(W, H, Image.SCALE_SMOOTH);
@@ -31,8 +31,8 @@ public class Athom extends Container {
         super.paint(g);
         g.drawImage(image, getLocation().x, getLocation().y, this);
         Font oldfont = g.getFont();
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-        //g.drawString(""+getLocation().x +","+getLocation().y,getLocation().x+4,getLocation().y+H/2+8);
+        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 11));
+        g.drawString(""+getLocation().x +","+getLocation().y,getLocation().x+4,getLocation().y+H/2+8);
         g.setFont(oldfont);
         //g.drawString(String.format("%1$,.2f", Fy), getLocation().x, getLocation().y);
         //g.drawString(String.format("%1$,.2f", Fx),getLocation().x + W-10,getLocation().y+W);

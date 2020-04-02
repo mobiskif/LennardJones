@@ -12,7 +12,7 @@ public class MainForm {
 
     public void initImageLabel() {
         double scale = 0.5;
-        Image img = new ImageIcon("src/ru/scheme.jpg").getImage();
+        Image img = new ImageIcon("/res/scheme.jpg").getImage();
         imageLabel.setIcon(new ImageIcon(img));
         int newW = (int) (imageLabel.getIcon().getIconWidth() * scale);
         int newH = (int) (imageLabel.getIcon().getIconHeight() * scale);
@@ -65,7 +65,7 @@ public class MainForm {
         imageLabel.setHorizontalAlignment(0);
         imageLabel.setHorizontalTextPosition(0);
         imageLabel.setText("");
-        mainPanel.add(imageLabel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_NORTHWEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        mainPanel.add(imageLabel, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_SOUTHWEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         athomPanel = new AthomPanel();
         athomPanel.setLayout(new BorderLayout(0, 0));
         mainPanel.add(athomPanel, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));

@@ -11,14 +11,14 @@ public class AthomPanel extends JPanel {
         super();
         setPreferredSize(new Dimension(model.W, model.H));
         //setLayout(null);
-        add(new Athom(50, 250));
-        add(new Athom(50 + (int) (150 * 1.12), 250));
-        add(new Athom(50, 390));
-        add(new Athom(50, 250 - (int) (150 * 1.12)));
+        add(new Athom(30, 150 - (int) (model.sigma * 1.12)));
+        add(new Athom(30, 150));
+        add(new Athom(30 + (int) (model.sigma * 1.12), 150));
+        add(new Athom(30, (int) (150 + model.sigma)));
 
-        add(new Athom(15, 360));
-        add(new Athom(125, 180));
-        add(new Athom(185, 340));
+        add(new Athom(150, 160));
+        add(new Athom(125, 80));
+        add(new Athom(175, 230));
 /*
         add(new Athom(85, 40));
         add(new Athom(285, 140));

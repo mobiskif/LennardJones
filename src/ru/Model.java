@@ -3,10 +3,10 @@ package ru;
 import java.awt.*;
 
 public class Model {
-    double epsilon = 10.0; //Эпсилон - глубина потенциальной ямы (энергия связи), эВ
-    double sigma = 150; //Сигма - расстояние, где F=0, типовое 3.40 A
+    double epsilon = 9.0; //Эпсилон - глубина потенциальной ямы (энергия связи), эВ
+    double sigma = 80; //Сигма - расстояние, где F=0, типовое 3.40 A
     double R[][], F[][], Fx[][], Fy[][];
-    int W = 500, H = 500, D;
+    int W = 400, H = 300, D;
 
     double F(double r) {
         double a = Math.pow((sigma / r), 12);
