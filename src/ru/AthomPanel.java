@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class AthomPanel extends JPanel {
     //Component[] components;
-    Model model = new Model();
+    final Model model = new Model();
 
     public AthomPanel() {
         super();
@@ -70,8 +70,8 @@ public class AthomPanel extends JPanel {
             }
         }
 
-        for (int i = 0; i < components.length; i++) {
-            components[i].paint(g);
+        for (Component component : components) {
+            component.paint(g);
         }
 
     }

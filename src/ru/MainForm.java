@@ -47,24 +47,18 @@ public class MainForm {
             thread.start();
             gasButton.setText(gasButton.getText() + ">");
         });
-        breakButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                isStarted = false;
-                gasButton.setText("Gas ");
-            }
+        breakButton.addActionListener(actionEvent -> {
+            isStarted = false;
+            gasButton.setText("Gas ");
         });
-        resetButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                isStarted = false;
-                gasButton.setText("Gas ");
-                //athomPanel.inits();
-                //athomPanel.model.calculate(athomPanel.getComponents());
-                //athomPanel.remove(0);
-                //athomPanel.repaint();
-                //athomPanel.remove(athomPanel.getComponentCount() - 1);
-            }
+        resetButton.addActionListener(actionEvent -> {
+            isStarted = false;
+            gasButton.setText("Gas ");
+            //athomPanel.inits();
+            //athomPanel.model.calculate(athomPanel.getComponents());
+            //athomPanel.remove(0);
+            //athomPanel.repaint();
+            //athomPanel.remove(athomPanel.getComponentCount() - 1);
         });
     }
 

@@ -3,16 +3,18 @@ package ru;
 import java.awt.*;
 
 public class Model {
-    double epsilon = 9.0; //Эпсилон - глубина потенциальной ямы (энергия связи), эВ
-    double sigma = 80; //Сигма - расстояние, где F=0, типовое 3.40 A
-    double R[][], F[][], Fx[][], Fy[][];
+    final double epsilon = 9.0; //Эпсилон - глубина потенциальной ямы (энергия связи), эВ
+    final double sigma = 80; //Сигма - расстояние, где F=0, типовое 3.40 A
+    double[][] R;
+    double[][] F;
+    double[][] Fx;
+    double[][] Fy;
     int W = 400, H = 300, D;
 
     double F(double r) {
         double a = Math.pow((sigma / r), 12);
         double b = Math.pow((sigma / r), 6);
-        double ff = 4 * epsilon * (a - b);
-        return ff;
+        return 4 * epsilon * (a - b);
     }
 
     public void calculate(Component[] components) {
@@ -76,21 +78,21 @@ public class Model {
     }
 
     public void animate(Component[] components) {
-        for (int i = 0; i < components.length; i++) {
-            Athom athom = (Athom) components[i];
+        for (Component component : components) {
+            Athom athom = (Athom) component;
 
             int dX = (int) Math.round(Math.log(athom.Fx));
-            int x = components[i].getLocation().x + dX;
+            int x = component.getLocation().x + dX;
             if (x < 0) x = 5;
-            if (x > (W - D)) x = W - D-5;
+            if (x > (W - D)) x = W - D - 5;
 
             int dY = (int) Math.round(Math.log(athom.Fy));
-            int y = components[i].getLocation().y - dY;
+            int y = component.getLocation().y - dY;
             if (y < 0) y = 5;
-            if (y > (H - D)) y = H - D-5;
+            if (y > (H - D)) y = H - D - 5;
 
             //System.out.println(i+" X: "+x+" "+ dX + ", Y: "+y+" " + dY);
-            components[i].setLocation(x, y);
+            component.setLocation(x, y);
         }
     }
 
