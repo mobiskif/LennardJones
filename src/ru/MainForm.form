@@ -28,7 +28,7 @@
       </grid>
       <toolbar id="fcf15">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="-1" height="20"/>
           </grid>
         </constraints>
@@ -38,17 +38,26 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="15506" class="javax.swing.JButton" binding="calcButton">
+          <component id="15506" class="javax.swing.JButton" binding="gasButton">
             <constraints/>
             <properties>
-              <text value="Calc"/>
+              <text value="Gas "/>
             </properties>
           </component>
-          <component id="4d5fc" class="javax.swing.JCheckBox" binding="checkBox">
+          <component id="cf9c0" class="javax.swing.JButton" binding="breakButton" default-binding="true">
             <constraints/>
             <properties>
-              <selected value="true"/>
-              <text value="CheckBox"/>
+              <text value="Break"/>
+            </properties>
+          </component>
+          <hspacer id="b959e">
+            <constraints/>
+          </hspacer>
+          <component id="4dbcc" class="javax.swing.JButton" binding="resetButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="Reset"/>
             </properties>
           </component>
         </children>

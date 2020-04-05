@@ -2,17 +2,21 @@ package ru;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainForm {
     JPanel mainPanel;
     JLabel imageLabel;
     private AthomPanel athomPanel;
-    private JButton calcButton;
-    private JCheckBox checkBox;
+    private JButton gasButton;
+    private JButton breakButton;
+    private JButton resetButton;
+    private boolean isStarted = false;
 
     public void initImageLabel() {
         double scale = 0.5;
-        Image img = new ImageIcon("/res/scheme.jpg").getImage();
+        Image img = new ImageIcon("src/res/scheme.jpg").getImage();
         imageLabel.setIcon(new ImageIcon(img));
         int newW = (int) (imageLabel.getIcon().getIconWidth() * scale);
         int newH = (int) (imageLabel.getIcon().getIconHeight() * scale);
@@ -25,7 +29,7 @@ public class MainForm {
 
         Runnable task = () -> {
             String threadName = Thread.currentThread().getName();
-            while (checkBox.isSelected()) {
+            while (isStarted) {
                 //System.out.println("Hello " + threadName);
                 athomPanel.calc();
                 try {
@@ -37,9 +41,30 @@ public class MainForm {
         };
         //task.run();
 
-        calcButton.addActionListener(actionEvent -> {
+        gasButton.addActionListener(actionEvent -> {
             Thread thread = new Thread(task);
+            isStarted = true;
             thread.start();
+            gasButton.setText(gasButton.getText() + ">");
+        });
+        breakButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                isStarted = false;
+                gasButton.setText("Gas ");
+            }
+        });
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                isStarted = false;
+                gasButton.setText("Gas ");
+                //athomPanel.inits();
+                //athomPanel.model.calculate(athomPanel.getComponents());
+                //athomPanel.remove(0);
+                //athomPanel.repaint();
+                //athomPanel.remove(athomPanel.getComponentCount() - 1);
+            }
         });
     }
 
@@ -73,14 +98,19 @@ public class MainForm {
         final JToolBar toolBar1 = new JToolBar();
         toolBar1.setBorderPainted(false);
         toolBar1.setFloatable(false);
-        mainPanel.add(toolBar1, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 20), null, 0, false));
-        calcButton = new JButton();
-        calcButton.setText("Calc");
-        toolBar1.add(calcButton);
-        checkBox = new JCheckBox();
-        checkBox.setSelected(true);
-        checkBox.setText("CheckBox");
-        toolBar1.add(checkBox);
+        mainPanel.add(toolBar1, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 20), null, 0, false));
+        gasButton = new JButton();
+        gasButton.setText("Gas ");
+        toolBar1.add(gasButton);
+        breakButton = new JButton();
+        breakButton.setText("Break");
+        toolBar1.add(breakButton);
+        final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
+        toolBar1.add(spacer1);
+        resetButton = new JButton();
+        resetButton.setHorizontalAlignment(0);
+        resetButton.setText("Reset");
+        toolBar1.add(resetButton);
     }
 
     /**

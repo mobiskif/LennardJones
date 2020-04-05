@@ -4,13 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AthomPanel extends JPanel {
-    Component[] components;
+    //Component[] components;
     Model model = new Model();
 
     public AthomPanel() {
         super();
-        setPreferredSize(new Dimension(model.W, model.H));
         //setLayout(null);
+        setPreferredSize(new Dimension(model.W, model.H));
+        inits();
+        //model.calculate(getComponents());
+    }
+
+    public void inits(){
+
+        this.removeAll();
+
+
         add(new Athom(30, 150 - (int) (model.sigma * 1.12)));
         add(new Athom(30, 150));
         add(new Athom(30 + (int) (model.sigma * 1.12), 150));
@@ -19,24 +28,17 @@ public class AthomPanel extends JPanel {
         add(new Athom(150, 160));
         add(new Athom(125, 80));
         add(new Athom(175, 230));
-/*
-        add(new Athom(85, 40));
-        add(new Athom(285, 140));
-        add(new Athom(385, 340));
-        add(new Athom(305, 300));
-        add(new Athom(400, 80));
-        add(new Athom(200, 10));
-        add(new Athom(400, 250));
-        add(new Athom(190, 235));
-*/
-        components = getComponents();
-        model.calculate(components);
+
+        //components = getComponents();
+        model.calculate(getComponents());
+
     }
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         model.setConstrains(getWidth(), getHeight());
+        Component[] components = getComponents();
         g.drawString(model.W + "," + model.H, getWidth() - 55, 14);
         g.drawString("E=" + model.epsilon + ", S=" + model.sigma, getWidth() / 2, 14);
         g.drawString("X " + getWidth(), getWidth() - 45, getHeight() - 8);
@@ -60,7 +62,7 @@ public class AthomPanel extends JPanel {
                     Font oldfont = g.getFont();
                     g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 9));
                     if (model.F != null)
-                        //g.drawString(String.format("%1$,.2f", model.F[i][j]), (Xi + Xj) / 2, (Yi + Yj) / 2);
+                        g.drawString(String.format("%1$,.2f", model.F[i][j]), (Xi + Xj) / 2, (Yi + Yj) / 2);
                     if (model.R != null)
                         //g.drawString(String.format("%1$,.0f", model.R[i][j]), (Xi + Xj) / 2, (Yi + Yj) / 2 + 12);
                     g.setFont(oldfont);
@@ -75,7 +77,7 @@ public class AthomPanel extends JPanel {
     }
 
     public void calc() {
-        model.animate(getComponents());
+        //model.animate(getComponents());
         model.calculate(getComponents());
         repaint();
     }

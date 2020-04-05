@@ -53,9 +53,24 @@ public class Model {
                 ffx += Fx[i][j];
                 ffy += Fy[i][j];
             }
-            ((Athom) components[i]).Fx = ffx;
-            ((Athom) components[i]).Fy = ffy;
+            Athom athom = (Athom) components[i];
+            athom.Fx = ffx;
+            athom.Fy = ffy;
             //System.out.println(i+" Fx="+ffx+", Fy="+ffy);
+
+            int dX = (int) Math.round(Math.log(athom.Fx));
+            int x = components[i].getLocation().x + dX;
+            if (x < 0) x = 0;
+            if (x > (W - D)) x = W - D;
+
+            int dY = (int) Math.round(Math.log(athom.Fy));
+            int y = components[i].getLocation().y - dY;
+            if (y < 0) y = 0;
+            if (y > (H - D)) y = H - D;
+
+            //System.out.println(i+" X: "+x+" "+ dX + ", Y: "+y+" " + dY);
+            components[i].setLocation(x, y);
+
         }
 
     }
