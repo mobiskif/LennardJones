@@ -28,13 +28,13 @@ public class Athom extends Container {
 
     @Override
     public void paint(Graphics g) {
-        //super.paint(g);
+        super.paint(g);
         g.drawImage(image, getLocation().x, getLocation().y, this);
-        Font oldfont = g.getFont();
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 11));
-        g.drawString(""+getLocation().x +","+getLocation().y,getLocation().x+4,getLocation().y+H/2+8);
-        g.setFont(oldfont);
-        g.drawString(String.format("%1$,.2f", Fy), getLocation().x, getLocation().y);
-        g.drawString(String.format("%1$,.2f", Fx),getLocation().x + W-10,getLocation().y+W);
+        //Font oldfont = g.getFont();
+        //g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 11));
+        //g.drawString(""+getLocation().x +","+getLocation().y,getLocation().x+4,getLocation().y+H/2+8);
+        //g.setFont(oldfont);
+        //g.drawString(String.format("%1$,.2f", Fy), getLocation().x, getLocation().y);
+        //g.drawString(String.format("%1$,.2f", Fx),getLocation().x + W-10,getLocation().y+W);
     }
 }

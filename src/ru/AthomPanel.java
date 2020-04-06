@@ -4,21 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AthomPanel extends JPanel {
-    //Component[] components;
     final Model model = new Model();
 
     public AthomPanel() {
         super();
-        //setLayout(null);
         setPreferredSize(new Dimension(model.W, model.H));
         inits();
-        //model.calculate(getComponents());
     }
 
     public void inits(){
-
         this.removeAll();
-
 
         add(new Athom(30, 150 - (int) (model.sigma * 1.12)));
         add(new Athom(30, 150));
@@ -29,9 +24,7 @@ public class AthomPanel extends JPanel {
         add(new Athom(125, 80));
         add(new Athom(175, 230));
 
-        //components = getComponents();
         model.calculate(getComponents());
-
     }
 
     @Override
@@ -62,7 +55,7 @@ public class AthomPanel extends JPanel {
                     Font oldfont = g.getFont();
                     g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 9));
                     if (model.F != null)
-                        g.drawString(String.format("%1$,.2f", model.F[i][j]), (Xi + Xj) / 2, (Yi + Yj) / 2);
+                        //g.drawString(String.format("%1$,.2f", model.F[i][j]), (Xi + Xj) / 2, (Yi + Yj) / 2);
                     if (model.R != null)
                         //g.drawString(String.format("%1$,.0f", model.R[i][j]), (Xi + Xj) / 2, (Yi + Yj) / 2 + 12);
                     g.setFont(oldfont);
