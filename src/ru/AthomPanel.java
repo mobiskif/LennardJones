@@ -9,35 +9,31 @@ public class AthomPanel extends JPanel {
     public AthomPanel() {
         super();
         setPreferredSize(new Dimension(model.W, model.H));
-        inits();
+        addRandomAthoms();
     }
 
-    public void inits(){
+    public void addRandomAthoms() {
         this.removeAll();
-
-        add(new Athom(30, 150 - (int) (model.sigma * 1.12)));
-        add(new Athom(30, 150));
-        add(new Athom(30 + (int) (model.sigma * 1.12), 150));
-        add(new Athom(30, (int) (150 + model.sigma)));
-
-        add(new Athom(150, 160));
-        add(new Athom(125, 80));
-        add(new Athom(175, 230));
-
-        model.calculate(getComponents());
+        int id=0;
+        add(new Athom(id++,30, 150 - (int) (model.sigma * 1.12), model));
+        add(new Athom(id++, 30, 150, model));
+        add(new Athom(id++, 30 + (int) (model.sigma * 1.12), 150, model));
+        add(new Athom(id++, 30, (int) (150 + model.sigma), model));
+        add(new Athom(id++, 150, 160, model));
+        add(new Athom(id++, 125, 80, model));
+        add(new Athom(id++, 175, 230, model));
+        model.setComponents(getComponents());
     }
 
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        model.setConstrains(getWidth(), getHeight());
-        Component[] components = getComponents();
+    void drawCommonInfoStrings(Graphics g) {
         g.drawString(model.W + "," + model.H, getWidth() - 55, 14);
         g.drawString("E=" + model.epsilon + ", S=" + model.sigma, getWidth() / 2, 14);
         g.drawString("X " + getWidth(), getWidth() - 45, getHeight() - 8);
         g.drawString("Y " + getHeight(), 4, 14);
         g.drawString("0,0", 4, getHeight() - 8);
+    }
 
+    void drawAthomsConnectionLines(Component[] components, Graphics g) {
         for (int i = 0; i < components.length; i++) {
             int dr = components[i].getWidth() / 2;
             for (int j = i; j < components.length; j++) {
@@ -54,22 +50,28 @@ public class AthomPanel extends JPanel {
 
                     Font oldfont = g.getFont();
                     g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 9));
-                    if (model.F != null)
-                        //g.drawString(String.format("%1$,.2f", model.F[i][j]), (Xi + Xj) / 2, (Yi + Yj) / 2);
-                    if (model.R != null)
-                        //g.drawString(String.format("%1$,.0f", model.R[i][j]), (Xi + Xj) / 2, (Yi + Yj) / 2 + 12);
+                    //if (model.F != null) g.drawString(String.format("%1$,.2f", model.F[i][j]), (Xi + Xj) / 2, (Yi + Yj) / 2);
+                    //if (model.R != null) g.drawString(String.format("%1$,.0f", model.R[i][j]), (Xi + Xj) / 2, (Yi + Yj) / 2 + 12);
                     g.setFont(oldfont);
                 }
             }
         }
-
-        for (Component component : components) {
-            component.paint(g);
-        }
-
     }
 
-    public void calc() {
+    void paintAllAthoms(Component[] components, Graphics g) {
+        for (Component c : components) c.paint(g);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        model.setConstrains(getWidth(), getHeight());
+        drawCommonInfoStrings(g);
+        drawAthomsConnectionLines(getComponents(), g);
+        paintAllAthoms(getComponents(), g);
+    }
+
+    public void computeAthomsLocationsAndPaint() {
         //model.animate(getComponents());
         model.calculate(getComponents());
         repaint();
