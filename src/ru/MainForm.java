@@ -2,6 +2,8 @@ package ru;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainForm {
     JPanel mainPanel;
@@ -9,7 +11,6 @@ public class MainForm {
     private AthomPanel athomPanel;
     private JButton gasButton;
     private JButton breakButton;
-    private JButton resetButton;
     private boolean isStarted = false;
 
     public void initImageLabel() {
@@ -27,7 +28,7 @@ public class MainForm {
 
         Runnable task = () -> {
             while (isStarted) {
-                athomPanel.computeAthomsLocationsAndPaint();
+                athomPanel.doSomeThing();
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -35,23 +36,19 @@ public class MainForm {
                 }
             }
         };
-        //task.run();
 
         gasButton.addActionListener(actionEvent -> {
             isStarted = true;
-            Thread thread = new Thread(task);
-            thread.start();
+            new Thread(task).start();
             gasButton.setText(gasButton.getText() + ">");
+            //athomPanel.doSomeThing();
         });
+
         breakButton.addActionListener(actionEvent -> {
             isStarted = false;
             gasButton.setText("Gas ");
         });
-        resetButton.addActionListener(actionEvent -> {
-            isStarted = false;
-            gasButton.setText("Gas ");
-            athomPanel.addRandomAthoms();
-        });
+
     }
 
     {
@@ -87,15 +84,11 @@ public class MainForm {
         gasButton = new JButton();
         gasButton.setText("Gas ");
         toolBar1.add(gasButton);
+        final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
+        toolBar1.add(spacer1);
         breakButton = new JButton();
         breakButton.setText("Break");
         toolBar1.add(breakButton);
-        final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
-        toolBar1.add(spacer1);
-        resetButton = new JButton();
-        resetButton.setHorizontalAlignment(0);
-        resetButton.setText("Reset");
-        toolBar1.add(resetButton);
     }
 
     /**

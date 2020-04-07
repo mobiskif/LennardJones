@@ -10,19 +10,19 @@ public class AthomPanel extends JPanel {
         super();
         setPreferredSize(new Dimension(model.W, model.H));
         addRandomAthoms();
+        repaint();
     }
 
-    public void addRandomAthoms() {
+    void addRandomAthoms() {
         this.removeAll();
-        int id=0;
-        add(new Athom(id++,30, 150 - (int) (model.sigma * 1.12), model));
-        add(new Athom(id++, 30, 150, model));
-        add(new Athom(id++, 30 + (int) (model.sigma * 1.12), 150, model));
-        add(new Athom(id++, 30, (int) (150 + model.sigma), model));
-        add(new Athom(id++, 150, 160, model));
-        add(new Athom(id++, 125, 80, model));
-        add(new Athom(id++, 175, 230, model));
-        model.setComponents(getComponents());
+        add(new Athom(30, 150, model));
+        add(new Athom(30, (int) (150 - model.sigma * 1.12), model));
+        add(new Athom(30, (int) (150 + model.sigma), model));
+        add(new Athom(250, 150, model));
+        add(new Athom(200, 90, model));
+        add(new Athom(125, 20, model));
+        add(new Athom(175, 230, model));
+        model.components = getComponents();
     }
 
     void drawCommonInfoStrings(Graphics g) {
@@ -62,19 +62,21 @@ public class AthomPanel extends JPanel {
         for (Component c : components) c.paint(g);
     }
 
+    void doSomeThing() {
+        for (Component c : getComponents()) {
+            Dimension dimension = model.deltaXY(c);
+            c.setLocation(dimension.width, dimension.height);
+        }
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        model.setConstrains(getWidth(), getHeight());
+        model.W = getWidth();
+        model.H = getHeight();
         drawCommonInfoStrings(g);
         drawAthomsConnectionLines(getComponents(), g);
         paintAllAthoms(getComponents(), g);
-    }
-
-    public void computeAthomsLocationsAndPaint() {
-        //model.animate(getComponents());
-        model.calculate(getComponents());
-        repaint();
     }
 
 }

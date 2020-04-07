@@ -44,20 +44,13 @@
               <text value="Gas "/>
             </properties>
           </component>
+          <hspacer id="b959e">
+            <constraints/>
+          </hspacer>
           <component id="cf9c0" class="javax.swing.JButton" binding="breakButton" default-binding="true">
             <constraints/>
             <properties>
               <text value="Break"/>
-            </properties>
-          </component>
-          <hspacer id="b959e">
-            <constraints/>
-          </hspacer>
-          <component id="4dbcc" class="javax.swing.JButton" binding="resetButton" default-binding="true">
-            <constraints/>
-            <properties>
-              <horizontalAlignment value="0"/>
-              <text value="Reset"/>
             </properties>
           </component>
         </children>
