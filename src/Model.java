@@ -1,5 +1,3 @@
-package ru;
-
 import java.awt.*;
 
 public class Model {

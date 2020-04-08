@@ -1,5 +1,3 @@
-package ru;
-
 import javax.swing.*;
 import java.awt.*;
 

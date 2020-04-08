@@ -1,7 +1,9 @@
-package ru;
-
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainForm {
     JPanel mainPanel;
@@ -13,12 +15,18 @@ public class MainForm {
 
     public void showPicture() {
         double scale = 0.5;
-        Image img = new ImageIcon("src/res/scheme.jpg").getImage();
-        imageLabel.setIcon(new ImageIcon(img));
-        int newW = (int) (imageLabel.getIcon().getIconWidth() * scale);
-        int newH = (int) (imageLabel.getIcon().getIconHeight() * scale);
-        img = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
-        imageLabel.setIcon(new ImageIcon(img));
+        InputStream is = getClass().getClassLoader().getResourceAsStream("jpg/scheme.jpg");
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(is);
+            imageLabel.setIcon(new ImageIcon(image));
+            int newW = (int) (imageLabel.getIcon().getIconWidth() * scale);
+            int newH = (int) (imageLabel.getIcon().getIconHeight() * scale);
+            Image imag = image.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+            imageLabel.setIcon(new ImageIcon(imag));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public MainForm() {

@@ -1,16 +1,10 @@
-package ru;
-
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.File;
-import java.io.IOException;
-
-import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
+import java.io.*;
+import java.net.URL;
 
 public class Athom extends Component implements Runnable, MouseMotionListener {
     private Image image;
@@ -23,7 +17,8 @@ public class Athom extends Component implements Runnable, MouseMotionListener {
         model = m;
         setLocation(x, y);
         try {
-            image = ImageIO.read(new File("src/res/athom.png"));
+            InputStream is = getClass().getClassLoader().getResourceAsStream("jpg/athom.png");
+            image = ImageIO.read(is);
             int diameter = (int) (model.sigma / 1.5);
             image = image.getScaledInstance(diameter, diameter, Image.SCALE_SMOOTH);
             setPreferredSize(new Dimension(diameter, diameter));
