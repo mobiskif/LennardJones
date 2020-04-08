@@ -1,0 +1,127 @@
+<?php include $_SERVER['DOCUMENT_ROOT'].'/local/inc/header.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'].'/local/inc/header_2.php'; ?>
+
+
+<section class="page page_mt12">
+
+
+    <div class="container">
+
+
+        <div class="row">
+
+
+            <div class="col-lg-10 col-lg-offset-2 col-md-9 col-md-offset-3 hidden-sm hidden-xs">
+                <div class="main_head">
+
+                    <div class="main_head_title">
+                        <?$APPLICATION->ShowTitle(false)?>
+                    </div>
+
+
+                    <form action="" class="main_head_search">
+
+
+                        <input type="text" name="s"
+                               placeholder="<?if($_GET['s']):?><?=$_GET['s'];?><?else:?>Поиск по разделу<?endif;?>"
+                               class="input">
+                        <input type="submit" class="submit" value="">
+
+
+                    </form>
+
+
+                </div>
+            </div>
+
+            <aside class="col-lg-2 col-md-3">
+
+
+                <div class="menu_left_wrap">
+
+                    <div class="menu_left_title hidden-lg hidden-md">
+                        Меню
+                    </div>
+                    <div class="menu_left">
+                        <?$APPLICATION->IncludeComponent(
+                        "bitrix:catalog.section.list",
+                        "menusection",
+                        array(
+                        "ADD_SECTIONS_CHAIN" => "Y",
+                        "CACHE_FILTER" => "N",
+                        "CACHE_GROUPS" => "Y",
+                        "CACHE_TIME" => "36000000",
+                        "CACHE_TYPE" => "A",
+                        "COUNT_ELEMENTS" => "Y",
+                        "FILTER_NAME" => "sectionsFilter",
+                        "IBLOCK_ID" => "3",
+                        "IBLOCK_TYPE" => "data",
+                        "SECTION_CODE" => "",
+                        "SECTION_FIELDS" => array(
+                        0 => "",
+                        1 => "",
+                        ),
+                        "SECTION_ID" => $_REQUEST["SECTION_ID"],
+                        "SECTION_URL" => "/project/#CODE#/",
+                        "SECTION_USER_FIELDS" => array(
+                        0 => "",
+                        1 => "",
+                        ),
+                        "SHOW_PARENT_NAME" => "Y",
+                        "TOP_DEPTH" => "2",
+                        "VIEW_MODE" => "LINE",
+                        "COMPONENT_TEMPLATE" => "menusection"
+                        ),
+                        false
+                        );?>
+                    </div>
+            </aside>
+
+
+            <main class="col-lg-10 col-md-9">
+
+                <div class="main_head hidden-lg hidden-md">
+
+
+                    <div class="main_head_title">
+
+                        Наши проекты по
+                        городам
+                    </div>
+
+                    <div class="main_head_search">
+
+
+                        <input type="text" placeholder="Поиск по разделу" class="input">
+                        <input type="submit" class="submit" value="">
+
+
+                    </div>
+                </div>
+
+
+                <div class="main_wrap">
+
+                    <div class="row row_6">
+
+                        <div class="row_flex ">
+
+                            <?include $_SERVER['DOCUMENT_ROOT'].'/local/components/news/project.php';?>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+</section>
+
+
+<?php include $_SERVER['DOCUMENT_ROOT'].'/local/inc/footer.php'; ?>
+#WORK_AREA#
