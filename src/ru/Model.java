@@ -1,7 +1,6 @@
 package ru;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Model {
     final double epsilon = 9.0; //Эпсилон - глубина потенциальной ямы (энергия связи), эВ
@@ -31,10 +30,10 @@ public class Model {
         return 4 * epsilon * (a - b);
     }
 
-    public Dimension deltaXY(Component A) {
+    public Dimension calculateDeltaXY(Component A) {
         double Fx = 0;
         double Fy = 0;
-        System.out.println(A);
+        //System.out.println(A);
         if (components != null) {
             for (int j = 0; j < components.length; j++) {
                 Component B = components[j];
@@ -46,24 +45,24 @@ public class Model {
                     //вычислить углы
                     double cosX = (B.getX() - A.getX()) / R;
                     double sinY = (B.getY() - A.getY()) / R;
-                    System.out.println("     "+j+" cosX="+cosX+" sinY="+sinY);
+                    //System.out.println("     "+j+" cosX="+cosX+" sinY="+sinY);
 
                     //вычислить и сложить проекцию силы на оси
                     Fx += -F * cosX;
                     Fy += -F * sinY;
-                    System.out.println("     "+j+" R="+R+" F="+F);
+                    //System.out.println("     "+j+" R="+R+" F="+F);
                 }
             }
         }
-        System.out.println("     Fx="+Fx+" Fy="+Fy);
+        //System.out.println("     Fx="+Fx+" Fy="+Fy);
 
         //вычислить смещение
         int x = A.getX();
         int y = A.getY();
-        System.out.println("     x="+x+" y="+y);
+        //System.out.println("     x="+x+" y="+y);
         if (Fx>=0) x = (int) Math.round(A.getX() + Math.log(Fx+1)); else x = (int) Math.round(A.getX() - Math.log(-Fx+1));
         if (Fy>=0) y = (int) Math.round(A.getY() + Math.log(Fy+1) ); else y = (int) Math.round(A.getY() - Math.log(-Fy+1));
-        System.out.println("     x="+x+" y="+y);
+        //System.out.println("     x="+x+" y="+y);
         return new Dimension(x,y);
     }
 

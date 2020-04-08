@@ -1,18 +1,22 @@
 package ru;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.IOException;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
 
-public class Athom extends Container implements Runnable {
+public class Athom extends Component implements Runnable, MouseMotionListener {
     private Image image;
     private final Model model;
     private boolean isStarted=false;
+    int x0,y0;
 
     public Athom(int x, int y, Model m) {
         super();
@@ -28,9 +32,9 @@ public class Athom extends Container implements Runnable {
             e.printStackTrace();
         }
         //new Thread(this).start();
-        addActionListener(actionEvent -> {
-            System.out.println("---" + actionEvent);
-        });
+        //addActionListener(actionEvent -> System.out.println("---" + actionEvent));
+
+        addMouseMotionListener(this);
 
         Athom a=this;
         addMouseListener(new MouseAdapter() {
@@ -56,18 +60,36 @@ public class Athom extends Container implements Runnable {
         g.setFont(oldfont);
         //g.drawString(String.format("%1$,.2f", Fy), getX(), getY());
         //g.drawString(String.format("%1$,.2f", Fx), getX() + getWidth() - g.getFont().getSize(), getY() + getHeight());
+        //g.drawRect(getX(),getY(),getWidth(),getHeight());
     }
 
     @Override
     public void run() {
         while (isStarted) {
-            Dimension dimension = model.deltaXY(this);
-            setLocation(dimension.width, dimension.height);
+            Dimension dXY = model.calculateDeltaXY(this);
+            setLocation(dXY.width, dXY.height);
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            getParent().repaint();
         }
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        int x1,y1,dx,dy;
+        x1 = e.getX(); y1 = e.getY();
+        dx = x1 - x0; dy = y1 - y0;
+        Athom n = (Athom) e.getSource();
+        n.setBounds(n.getX() + dx, n.getY() + dy, n.getWidth(), n.getHeight());
+        n.getParent().repaint();
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        x0 = e.getX();
+        y0 = e.getY();
     }
 }

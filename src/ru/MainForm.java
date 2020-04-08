@@ -2,8 +2,6 @@ package ru;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class MainForm {
     JPanel mainPanel;
@@ -13,7 +11,7 @@ public class MainForm {
     private JButton breakButton;
     private boolean isStarted = false;
 
-    public void initImageLabel() {
+    public void showPicture() {
         double scale = 0.5;
         Image img = new ImageIcon("src/res/scheme.jpg").getImage();
         imageLabel.setIcon(new ImageIcon(img));
@@ -24,7 +22,7 @@ public class MainForm {
     }
 
     public MainForm() {
-        initImageLabel();
+        showPicture();
 
         Runnable task = () -> {
             while (isStarted) {

@@ -56,6 +56,7 @@ public class AthomPanel extends JPanel {
                 }
             }
         }
+        //System.out.println("-------");
     }
 
     void paintAllAthoms(Component[] components, Graphics g) {
@@ -64,8 +65,9 @@ public class AthomPanel extends JPanel {
 
     void doSomeThing() {
         for (Component c : getComponents()) {
-            Dimension dimension = model.deltaXY(c);
+            Dimension dimension = model.calculateDeltaXY(c);
             c.setLocation(dimension.width, dimension.height);
+            //c.getParent().repaint();
         }
     }
 
