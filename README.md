@@ -1,2 +1,2 @@
 # LennardJones
-<img src="scr/jpg/screen.png"/>
+<img src="src/jpg/svreen.png"/>
