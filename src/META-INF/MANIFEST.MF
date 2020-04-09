@@ -1,3 +1,7 @@
 Manifest-Version: 1.0
 Main-Class: Main
+Application-Name: LennardJones
+Permissions: sandbox
+Codebase: http://localhost/mobiskif
+
 
