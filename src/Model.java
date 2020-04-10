@@ -1,9 +1,9 @@
 import java.awt.*;
 
 public class Model {
-    final double epsilon = 9.0; //Эпсилон - глубина потенциальной ямы (энергия связи), эВ
-    final double sigma = 80; //Сигма - расстояние, где F=0, типовое 3.40 A
-    int W = 400, H = 300; //размер атома водорода: 50А=5*10e-9, размер полотна 500А, т.е. 1 пиксель = 1 А
+    final double epsilon = 2.0; //Эпсилон - глубина потенциальной ямы (энергия связи), эВ
+    final double sigma = 40; //Сигма - расстояние, где F=0, типовое 3.40 A
+    int W = 350, H = 350; //размер атома водорода: 50А=5*10e-9, размер полотна 500А, т.е. 1 пиксель = 1 А
     //ArrayList<Component> components = new ArrayList<>();
     Component[] components;
 

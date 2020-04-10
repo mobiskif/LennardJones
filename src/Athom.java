@@ -9,7 +9,7 @@ import java.net.URL;
 public class Athom extends Component implements Runnable, MouseMotionListener {
     private Image image;
     private final Model model;
-    private boolean isStarted=false;
+    private boolean isStarted=true;
     int x0,y0;
 
     public Athom(int x, int y, Model m) {
@@ -26,7 +26,7 @@ public class Athom extends Component implements Runnable, MouseMotionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //new Thread(this).start();
+        new Thread(this).start();
         //addActionListener(actionEvent -> System.out.println("---" + actionEvent));
 
         addMouseMotionListener(this);
@@ -51,7 +51,7 @@ public class Athom extends Component implements Runnable, MouseMotionListener {
         g.drawImage(image, getLocation().x, getLocation().y, this);
         Font oldfont = g.getFont();
         g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 11));
-        g.drawString("" + getX() + "," + getY(), getX() + 4, getY() + getHeight() / 2 + 8);
+        //g.drawString("" + getX() + "," + getY(), getX() + 4, getY() + getHeight() / 2 + 8);
         g.setFont(oldfont);
         //g.drawString(String.format("%1$,.2f", Fy), getX(), getY());
         //g.drawString(String.format("%1$,.2f", Fx), getX() + getWidth() - g.getFont().getSize(), getY() + getHeight());
@@ -64,7 +64,7 @@ public class Athom extends Component implements Runnable, MouseMotionListener {
             Dimension dXY = model.calculateDeltaXY(this);
             setLocation(dXY.width, dXY.height);
             try {
-                Thread.sleep(100);
+                Thread.sleep(20);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

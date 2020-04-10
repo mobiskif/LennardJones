@@ -7,11 +7,12 @@ public class AthomPanel extends JPanel {
     public AthomPanel() {
         super();
         setPreferredSize(new Dimension(model.W, model.H));
+        //addAthoms();
         addRandomAthoms();
         repaint();
     }
 
-    void addRandomAthoms() {
+    void addAthoms() {
         this.removeAll();
         add(new Athom(30, 150, model));
         add(new Athom(30, (int) (150 - model.sigma * 1.12), model));
@@ -20,6 +21,13 @@ public class AthomPanel extends JPanel {
         add(new Athom(200, 90, model));
         add(new Athom(125, 20, model));
         add(new Athom(175, 230, model));
+        model.components = getComponents();
+    }
+
+    void addRandomAthoms() {
+        for (int i = 0; i < 40 ; i++) {
+            add(new Athom((int)(10+Math.random()*300), (int)(10+Math.random()*300), model));
+        }
         model.components = getComponents();
     }
 
@@ -75,7 +83,7 @@ public class AthomPanel extends JPanel {
         model.W = getWidth();
         model.H = getHeight();
         drawCommonInfoStrings(g);
-        drawAthomsConnectionLines(getComponents(), g);
+        //drawAthomsConnectionLines(getComponents(), g);
         paintAllAthoms(getComponents(), g);
     }
 
